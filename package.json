@@ -2,7 +2,7 @@
   "name": "www.opends.studio",
   "version": "1.0.0",
   "scripts": {
-    "dev:spotlight": "spotlight-sidecar",
+    "dev:spotlight": "pnpx @spotlightjs/spotlight",
     "dev:next": "next dev",
     "dev": "run-p dev:*",
     "build": "next build",
@@ -61,6 +61,7 @@
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@commitlint/cz-commitlint": "^19.2.0",
+    "@commitlint/types": "^19.0.3",
     "@faker-js/faker": "^8.4.1",
     "@next/bundle-analyzer": "^14.2.5",
     "@percy/cli": "1.29.0",
@@ -129,14 +130,10 @@
     "tailwindcss": "^3.4.7",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.5.4",
+    "vite": "^5.4.1",
     "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^2.0.4",
     "vitest-fail-on-console": "^0.7.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "@commitlint/cz-commitlint"
-    }
   },
   "release": {
     "branches": [
@@ -161,5 +158,5 @@
       "@semantic-release/github"
     ]
   },
-  "author": "Ixartz (https://github.com/ixartz)"
+  "author": "Marcos Bérgamo (https://github.com/thebergamo)"
 }

@@ -30,9 +30,7 @@ export type PricingPlan = {
   prodPriceId: string;
   features: {
     teamMember: number;
-    website: number;
-    storage: number;
-    transfer: number;
+    schema: number;
   };
 };
 

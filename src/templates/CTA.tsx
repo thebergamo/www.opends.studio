@@ -1,4 +1,5 @@
-import { GitHubLogoIcon } from '@radix-ui/react-icons';
+import { RocketIcon } from '@radix-ui/react-icons';
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import { buttonVariants } from '@/components/ui/button';
@@ -14,13 +15,13 @@ const CTA = () => {
         title={t('title')}
         description={t('description')}
         buttons={
-          <a
+          <Link
             className={buttonVariants({ variant: 'outline', size: 'lg' })}
-            href="https://github.com/thebergamo/www.opends.studio"
+            href="/sign-up"
           >
-            <GitHubLogoIcon className="mr-2 size-5" />
+            <RocketIcon className="mr-2 size-5" />
             {t('button_text')}
-          </a>
+          </Link>
         }
       />
     </Section>

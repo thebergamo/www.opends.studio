@@ -3,7 +3,7 @@ const CTABanner = (props: {
   description: string;
   buttons: React.ReactNode;
 }) => (
-  <div className="rounded-xl bg-muted bg-gradient-to-br from-indigo-400 via-purple-400 to-pink-400 px-6 py-10 text-center">
+  <div className="rounded-xl bg-muted bg-gradient-to-br from-[#C84700] via-[#BF4126] to-[#010B02] px-6 py-10 text-center">
     <div className="text-3xl font-bold text-primary-foreground">
       {props.title}
     </div>

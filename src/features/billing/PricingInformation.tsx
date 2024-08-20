@@ -27,23 +27,10 @@ const PricingInformation = (props: {
           </PricingFeature>
 
           <PricingFeature>
-            {t('feature_website', {
-              number: plan.features.website,
+            {t('feature_schema', {
+              number: plan.features.schema,
             })}
           </PricingFeature>
-
-          <PricingFeature>
-            {t('feature_storage', {
-              number: plan.features.storage,
-            })}
-          </PricingFeature>
-
-          <PricingFeature>
-            {t('feature_transfer', {
-              number: plan.features.transfer,
-            })}
-          </PricingFeature>
-
           <PricingFeature>{t('feature_email_support')}</PricingFeature>
         </PricingCard>
       ))}
