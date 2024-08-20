@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { unstable_setRequestLocale } from 'next-intl/server';
 
+import { ThemeProvider } from '@/components/ThemeProvider';
 import { AllLocales } from '@/utils/AppConfig';
 
 export const metadata: Metadata = {
@@ -47,12 +48,19 @@ export default function RootLayout(props: {
   return (
     <html lang={props.params.locale} className="scroll-smooth">
       <body className="bg-background text-foreground antialiased">
-        <NextIntlClientProvider
-          locale={props.params.locale}
-          messages={messages}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
-          {props.children}
-        </NextIntlClientProvider>
+          <NextIntlClientProvider
+            locale={props.params.locale}
+            messages={messages}
+          >
+            {props.children}
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -11,7 +11,7 @@ const Section = (props: {
     {(props.title || props.subtitle || props.description) && (
       <div className="mx-auto mb-12 max-w-screen-md text-center">
         {props.subtitle && (
-          <div className="bg-gradient-to-r from-[#C84700] via-[#BF4126] to-[#010B02] bg-clip-text text-sm font-bold text-transparent">
+          <div className="bg-gradient-to-r from-gradient-0 via-gradient-40 to-gradient-100 bg-clip-text text-sm font-bold text-transparent">
             {props.subtitle}
           </div>
         )}
@@ -21,7 +21,7 @@ const Section = (props: {
         )}
 
         {props.description && (
-          <div className="mt-2 text-lg text-muted-foreground">
+          <div className="mt-2 text-lg text-foreground">
             {props.description}
           </div>
         )}

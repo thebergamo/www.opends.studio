@@ -13,6 +13,12 @@ const config = {
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        gradient: {
+          0: 'var(--gradient-stop-0)',
+          40: 'var(--gradient-stop-40)',
+          60: 'var(--gradient-stop-60)',
+          100: 'var(--gradient-stop-100)',
+        },
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',

@@ -35,7 +35,7 @@
     --radius: 0.5rem;
   }
 
-  .dark {
+  /* .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -63,11 +63,80 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+  } */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: 222.2 84% 4.9%;
+      --foreground: 210 40% 98%;
+
+      --card: 222.2 84% 4.9%;
+      --card-foreground: 210 40% 98%;
+
+      --popover: 222.2 84% 4.9%;
+      --popover-foreground: 210 40% 98%;
+
+      --primary: 210 40% 98%;
+      --primary-foreground: 222.2 47.4% 11.2%;
+
+      --secondary: 217.2 32.6% 17.5%;
+      --secondary-foreground: 210 40% 98%;
+
+      --muted: 217.2 32.6% 17.5%;
+      --muted-foreground: 215 20.2% 65.1%;
+
+      --accent: 217.2 32.6% 17.5%;
+      --accent-foreground: 210 40% 98%;
+
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 210 40% 98%;
+
+      --border: 217.2 32.6% 17.5%;
+      --input: 217.2 32.6% 17.5%;
+      --ring: 212.7 26.8% 83.9%;
+    }
+  }
+}
+
+@layer base {
+  :root {
+    --gradient-stop-0: #c84700;
+    --gradient-stop-40: #bf4126;
+    --gradient-stop-60: #2a0b0a;
+    --gradient-stop-100: #010b02;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --gradient-stop-0: #ff7a00;
+      --gradient-stop-40: #ff5640;
+      --gradient-stop-60: #4a1a18;
+      --gradient-stop-100: #5e2a22;
+    }
+  }
+}
+
+@layer components {
+  .logo-stop-0 {
+    stop-color: var(--gradient-stop-0);
+  }
+
+  .logo-stop-40 {
+    stop-color: var(--gradient-stop-40);
+  }
+
+  .logo-stop-60 {
+    stop-color: var(--gradient-stop-60);
+  }
+
+  .logo-stop-100 {
+    stop-color: var(--gradient-stop-100);
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }

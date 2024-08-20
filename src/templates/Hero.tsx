@@ -24,7 +24,7 @@ const Hero = () => {
         }}
         title={t.rich('title', {
           important: (chunks) => (
-            <span className="bg-gradient-to-r from-[#FF5733] via-[#BF4126] to-[#C84700] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gradient-0 via-gradient-40 to-gradient-60 bg-clip-text text-transparent">
               {chunks}
             </span>
           ),

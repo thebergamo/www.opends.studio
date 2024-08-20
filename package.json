@@ -28,6 +28,7 @@
   "dependencies": {
     "@clerk/localizations": "^2.5.1",
     "@clerk/nextjs": "^5.2.6",
+    "@clerk/themes": "^2.1.21",
     "@electric-sql/pglite": "^0.1.5",
     "@hookform/resolvers": "^3.9.0",
     "@logtail/pino": "^0.4.22",
@@ -47,12 +48,13 @@
     "lucide-react": "^0.416.0",
     "next": "^14.2.5",
     "next-intl": "^3.17.2",
+    "next-themes": "^0.3.0",
     "pg": "^8.12.0",
     "pino": "^9.3.2",
     "pino-pretty": "^11.2.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-hook-form": "^7.52.1",
+    "react-hook-form": "^7.52.2",
     "sharp": "^0.33.4",
     "tailwind-merge": "^2.4.0",
     "zod": "^3.23.8"
