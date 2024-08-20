@@ -45,7 +45,7 @@ export default function RootLayout(props: {
   const messages = useMessages();
 
   return (
-    <html lang={props.params.locale}>
+    <html lang={props.params.locale} className="scroll-smooth">
       <body className="bg-background text-foreground antialiased">
         <NextIntlClientProvider
           locale={props.params.locale}

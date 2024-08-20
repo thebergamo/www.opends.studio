@@ -32,11 +32,11 @@ const Navbar = () => {
         }
       >
         <li>
-          <Link href="#product">{t('product')}</Link>
+          <a href="#product">{t('product')}</a>
         </li>
 
         <li>
-          <Link href="#price">{t('prices')}</Link>
+          <a href="#price">{t('prices')}</a>
         </li>
 
         <li>
