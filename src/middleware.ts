@@ -6,6 +6,7 @@ import {
 } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
+import { ORG_ROLE } from './types/Auth';
 import { AllLocales, AppConfig } from './utils/AppConfig';
 
 const intlMiddleware = createMiddleware({
@@ -19,6 +20,11 @@ const isProtectedRoute = createRouteMatcher([
   '/:locale/dashboard(.*)',
   '/onboarding(.*)',
   '/:locale/onboarding(.*)',
+]);
+
+const isAdminProtectedRoute = createRouteMatcher([
+  '/dashboard/subscription(.*)',
+  '/:locale/dashboard/subscription(.*)',
 ]);
 
 export default async function middleware(
@@ -42,11 +48,21 @@ export default async function middleware(
           req.nextUrl.pathname.match(/(\/.*)\/dashboard/)?.at(1) ?? '';
 
         const signInUrl = new URL(`${locale}/sign-in`, req.url);
+        const homeUrl = new URL(`${locale}/dashboard`, req.url);
 
         authObj.protect({
           // `unauthenticatedUrl` is needed to avoid error: "Unable to find `next-intl` locale because the middleware didn't run on this request"
           unauthenticatedUrl: signInUrl.toString(),
         });
+
+        if (isAdminProtectedRoute(req)) {
+          authObj.protect(
+            (has) => {
+              return has({ role: ORG_ROLE.ADMIN });
+            },
+            { unauthorizedUrl: homeUrl.toString() },
+          );
+        }
       }
 
       if (

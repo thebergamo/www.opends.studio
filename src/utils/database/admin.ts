@@ -17,14 +17,15 @@ type Price = typeof pricesSchema.$inferInsert;
 type Subscription = typeof subscriptionsSchema.$inferInsert;
 
 const getOrgId = () => {
-  const { orgId } = auth();
+  const { sessionClaims } = auth();
+  console.log({ sessionClaims });
 
-  if (!orgId) {
+  if (!sessionClaims?.org_id) {
     console.error('Could not get user session.');
     throw new Error('Could not get user session.');
   }
 
-  return orgId;
+  return sessionClaims.org_id;
 };
 
 // Change to control trial period length

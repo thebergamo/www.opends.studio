@@ -16,6 +16,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Logo } from '@/templates/Logo';
+import { ORG_ROLE } from '@/types/Auth';
 import { getI18nPath } from '@/utils/Helpers';
 
 const DashboardHeader = (props: {
@@ -32,7 +33,7 @@ const DashboardHeader = (props: {
     return null;
   }
 
-  const isAdmin = has({ role: 'org:admin' });
+  const isAdmin = has({ role: ORG_ROLE.ADMIN });
 
   return (
     <>
@@ -60,6 +61,7 @@ const DashboardHeader = (props: {
             locale,
           )}
           afterCreateOrganizationUrl="/dashboard"
+          afterSelectOrganizationUrl={getI18nPath('/dashboard', locale)}
           hidePersonal
           skipInvitationScreen
           appearance={{

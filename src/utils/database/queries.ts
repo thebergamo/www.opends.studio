@@ -8,7 +8,10 @@ import {
   subscriptionsSchema,
 } from '@/models/Schema';
 
+import { getOrgId } from './admin';
+
 export const getSubscription = cache(async () => {
+  const orgId = getOrgId();
   try {
     const subscription = await db.query.subscriptionsSchema.findFirst({
       with: {
@@ -18,7 +21,10 @@ export const getSubscription = cache(async () => {
           },
         },
       },
-      where: inArray(subscriptionsSchema.status, ['active', 'trialing']),
+      where: and(
+        eq(subscriptionsSchema.orgId, orgId),
+        inArray(subscriptionsSchema.status, ['active', 'trialing']),
+      ),
     });
 
     return subscription;
