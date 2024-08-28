@@ -2,12 +2,15 @@ import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import { DashboardHeader } from '@/features/dashboard/DashboardHeader';
+import { initAction } from '@/utils/stripe/server';
 
 export async function generateMetadata(props: { params: { locale: string } }) {
   const t = await getTranslations({
     locale: props.params.locale,
     namespace: 'Dashboard',
   });
+
+  await initAction();
 
   return {
     title: t('meta_title'),
@@ -27,14 +30,6 @@ export default function DashboardLayout(props: { children: React.ReactNode }) {
               {
                 href: '/dashboard',
                 label: t('home'),
-              },
-              {
-                href: '/dashboard/organization-profile/organization-members',
-                label: t('members'),
-              },
-              {
-                href: '/dashboard/organization-profile',
-                label: t('settings'),
               },
             ]}
           />

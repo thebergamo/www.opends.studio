@@ -1,11 +1,11 @@
-import { UserProfile } from '@clerk/nextjs';
+import { OrganizationProfile } from '@clerk/nextjs';
 import { useTranslations } from 'next-intl';
 
 import { TitleBar } from '@/features/dashboard/TitleBar';
 import { getI18nPath } from '@/utils/Helpers';
 
-const UserProfilePage = (props: { params: { locale: string } }) => {
-  const t = useTranslations('UserProfile');
+const OrganizationProfilePage = (props: { params: { locale: string } }) => {
+  const t = useTranslations('OrganizationProfile');
 
   return (
     <>
@@ -14,9 +14,10 @@ const UserProfilePage = (props: { params: { locale: string } }) => {
         description={t('title_bar_description')}
       />
 
-      <UserProfile
+      <OrganizationProfile
         routing="path"
-        path={getI18nPath('/dashboard/user-profile', props.params.locale)}
+        path={getI18nPath('/dashboard/organization', props.params.locale)}
+        afterLeaveOrganizationUrl="/onboarding/organization-selection"
         appearance={{
           elements: {
             rootBox: 'w-full',
@@ -28,4 +29,4 @@ const UserProfilePage = (props: { params: { locale: string } }) => {
   );
 };
 
-export default UserProfilePage;
+export default OrganizationProfilePage;

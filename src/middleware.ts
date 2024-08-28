@@ -21,10 +21,14 @@ const isProtectedRoute = createRouteMatcher([
   '/:locale/onboarding(.*)',
 ]);
 
-export default function middleware(
+export default async function middleware(
   request: NextRequest,
   event: NextFetchEvent,
 ) {
+  if (request.nextUrl.pathname.includes('/api/webhooks')) {
+    return NextResponse.next();
+  }
+
   if (
     request.nextUrl.pathname.includes('/sign-in') ||
     request.nextUrl.pathname.includes('/sign-up') ||

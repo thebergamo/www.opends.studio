@@ -6,6 +6,7 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
+    "no-console": "off", // Allow console.log
     "prettier/prettier": [
       "error",
       {
