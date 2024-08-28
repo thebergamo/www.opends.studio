@@ -43,6 +43,7 @@ export default function AuthLayout(props: {
       signUpUrl={signUpUrl}
       signInFallbackRedirectUrl={dashboardUrl}
       signUpFallbackRedirectUrl={dashboardUrl}
+      afterSignOutUrl="/"
       appearance={{
         baseTheme: theme,
         variables: clerkVariables,

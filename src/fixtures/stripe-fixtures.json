@@ -1,0 +1,131 @@
+{
+  "_meta": {
+    "template_version": 0
+  },
+  "fixtures": [
+    {
+      "name": "prod_free_plan",
+      "path": "/v1/products",
+      "method": "post",
+      "params": {
+        "name": "Free Plan",
+        "description": "For hackers and makers",
+        "marketing_features": [
+          {
+            "name": "2 Seats"
+          },
+          {
+            "name": "1 ODS Schema"
+          },
+          {
+            "name": "Email Support"
+          }
+        ],
+        "statement_descriptor": "OpenDS Studio",
+        "unit_label": "Free Plan",
+        "metadata": {
+          "index": 0
+        }
+      }
+    },
+    {
+      "name": "price_free_plan_month",
+      "path": "/v1/prices",
+      "method": "post",
+      "params": {
+        "product": "${prod_free_plan:id}",
+        "currency": "usd",
+        "billing_scheme": "per_unit",
+        "unit_amount": 0,
+        "lookup_key": "free",
+        "recurring": {
+          "interval": "month",
+          "interval_count": 1
+        }
+      }
+    },
+    {
+      "name": "prod_pro_plan",
+      "path": "/v1/products",
+      "method": "post",
+      "params": {
+        "name": "Pro Plan",
+        "description": "For teams",
+        "marketing_features": [
+          {
+            "name": "5 Seats"
+          },
+          {
+            "name": "5 ODS Schemas"
+          },
+          {
+            "name": "Email Support"
+          }
+        ],
+        "statement_descriptor": "OpenDS Studio",
+        "unit_label": "Pro Plan",
+        "metadata": {
+          "index": 1
+        }
+      }
+    },
+    {
+      "name": "price_pro_plan_month",
+      "path": "/v1/prices",
+      "method": "post",
+      "params": {
+        "product": "${prod_pro_plan:id}",
+        "currency": "usd",
+        "billing_scheme": "per_unit",
+        "unit_amount": 500,
+        "lookup_key": "professional",
+        "recurring": {
+          "interval": "month",
+          "interval_count": 1
+        }
+      }
+    },
+    {
+      "name": "prod_enterprise_plan",
+      "path": "/v1/products",
+      "method": "post",
+      "params": {
+        "name": "Enterprise Plan",
+        "description": "For industry leaders",
+        "marketing_features": [
+          {
+            "name": "100 Seats"
+          },
+          {
+            "name": "100 ODS Schemas"
+          },
+          {
+            "name": "Email Support"
+          }
+        ],
+
+        "statement_descriptor": "OpenDS Studio",
+        "unit_label": "Enterprise",
+        "metadata": {
+          "index": 2
+        }
+      }
+    },
+    {
+      "name": "price_enterprise_plan_month",
+      "path": "/v1/prices",
+      "method": "post",
+      "params": {
+        "product": "${prod_enterprise_plan:id}",
+        "currency": "usd",
+        "billing_scheme": "per_unit",
+        "unit_amount": 9900,
+        "lookup_key": "enterprise",
+        "recurring": {
+          "interval": "month",
+          "interval_count": 1
+        }
+      }
+    }
+  ]
+}

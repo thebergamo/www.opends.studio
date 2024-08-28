@@ -160,5 +160,26 @@
     "message_title": "Message",
     "message_description": "Enter a detailed message for your todo.",
     "submit_button": "Submit"
+  },
+  "DashboardHeader": {
+    "organization": "Manage Organization",
+    "subscriptions": "Manage Subscription"
+  },
+  "SubscriptionIndex": {
+    "title_bar": "Subscription",
+    "title_bar_description": "View or Change your current subscription plan",
+    "button_text": "Subscribe",
+    "portal_title": "Your Plan",
+    "current_plan": "The plan your are currently using is: {planName}.",
+    "choose_plan": "Choose your plan",
+    "upgrade_plan": "Upgrade your plan today!",
+    "button_current_plan": "Choosen",
+    "downgrade_button_text": "Downgrade",
+    "upgrade_button_text": "Upgrade",
+    "UNKNOWN_RETRY": "An unknown error occurred. Please try again soon.",
+    "subscription_update_error": "An error occurred while updating your subscription.",
+    "subscription_update": "Updating subscription...",
+    "subscription_update_success": "Subscription updated successfully",
+    "checkout_error": "Please try again later or contact a system administrator."
   }
 }

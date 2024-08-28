@@ -7,6 +7,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const toDateTime = (secs: number) => {
+  const t = new Date(+0); // Unix epoch start.
+  t.setSeconds(secs);
+  return t;
+};
+
 export const MILLISECONDS_IN_ONE_DAY = 86_400_000;
 
 export const getBaseUrl = () => {
@@ -28,6 +34,19 @@ export const getBaseUrl = () => {
   return 'http://localhost:3000';
 };
 
+export const getURL = (endpoint: string = '') => {
+  let url = getBaseUrl();
+  // Trim the URL and remove trailing slash if exists.
+  url = url.replace(/\/+$/, '');
+  // Make sure to include `https://` when not localhost.
+  url = url.includes('http') ? url : `https://${url}`;
+  // Ensure path starts without a slash to avoid double slashes in the final URL.
+  const path = endpoint.replace(/^\/+/, '');
+
+  // Concatenate the URL and the path.
+  return path ? `${url}/${path}` : url;
+};
+
 export const getI18nPath = (url: string, locale: string) => {
   if (locale === AppConfig.defaultLocale) {
     return url;
@@ -35,3 +54,67 @@ export const getI18nPath = (url: string, locale: string) => {
 
   return `/${locale}${url}`;
 };
+
+const toastKeyMap: { [key: string]: string[] } = {
+  status: ['status', 'status_description'],
+  error: ['error', 'error_description'],
+};
+
+const getToastRedirect = (
+  path: string,
+  toastType: string,
+  toastName: string,
+  toastDescription: string = '',
+  disableButton: boolean = false,
+  arbitraryParams: string = '',
+): string => {
+  const [nameKey, descriptionKey] = toastKeyMap[toastType] ?? [];
+
+  let redirectPath = `${path}?${nameKey}=${encodeURIComponent(toastName)}`;
+
+  if (toastDescription) {
+    redirectPath += `&${descriptionKey}=${encodeURIComponent(toastDescription)}`;
+  }
+
+  if (disableButton) {
+    redirectPath += `&disable_button=true`;
+  }
+
+  if (arbitraryParams) {
+    redirectPath += `&${arbitraryParams}`;
+  }
+
+  return redirectPath;
+};
+
+export const getStatusRedirect = (
+  path: string,
+  statusName: string,
+  statusDescription: string = '',
+  disableButton: boolean = false,
+  arbitraryParams: string = '',
+) =>
+  getToastRedirect(
+    path,
+    'status',
+    statusName,
+    statusDescription,
+    disableButton,
+    arbitraryParams,
+  );
+
+export const getErrorRedirect = (
+  path: string,
+  errorName: string,
+  errorDescription: string = '',
+  disableButton: boolean = false,
+  arbitraryParams: string = '',
+) =>
+  getToastRedirect(
+    path,
+    'error',
+    errorName,
+    errorDescription,
+    disableButton,
+    arbitraryParams,
+  );

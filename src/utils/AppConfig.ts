@@ -1,11 +1,20 @@
 import type { LocalePrefix } from 'node_modules/next-intl/dist/types/src/routing/types';
 
-import { BILLING_INTERVAL, type PricingPlan } from '@/types/Subscription';
+import {
+  BILLING_INTERVAL,
+  type PlanId,
+  type PricingPlan,
+} from '@/types/Subscription';
+
+import packageJson from '../../package.json';
 
 const localePrefix: LocalePrefix = 'as-needed';
 
 export const AppConfig = {
   name: 'OpenDS Studio',
+  description:
+    'Single Source of Truth for your Open Design System with batteries included',
+  version: packageJson.version,
   locales: [
     {
       id: 'en',
@@ -34,6 +43,45 @@ export const PLAN_ID = {
   PREMIUM: 'premium',
   ENTERPRISE: 'enterprise',
 } as const;
+
+export const PricingPlanMap: Record<PlanId, PricingPlan> = {
+  [PLAN_ID.FREE]: {
+    id: PLAN_ID.FREE,
+    price: 0,
+    interval: BILLING_INTERVAL.MONTH,
+    testPriceId: '',
+    devPriceId: '',
+    prodPriceId: '',
+    features: {
+      teamMember: 2,
+      schema: 1,
+    },
+  },
+  [PLAN_ID.PREMIUM]: {
+    id: PLAN_ID.PREMIUM,
+    price: 5,
+    interval: BILLING_INTERVAL.MONTH,
+    testPriceId: '',
+    devPriceId: '',
+    prodPriceId: '',
+    features: {
+      teamMember: 5,
+      schema: 5,
+    },
+  },
+  [PLAN_ID.ENTERPRISE]: {
+    id: PLAN_ID.ENTERPRISE,
+    price: 99,
+    interval: BILLING_INTERVAL.MONTH,
+    testPriceId: '',
+    devPriceId: '',
+    prodPriceId: '',
+    features: {
+      teamMember: 100,
+      schema: 100,
+    },
+  },
+};
 
 export const PricingPlanList: Array<PricingPlan> = [
   {

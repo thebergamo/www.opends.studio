@@ -1,10 +1,12 @@
 'use client';
 
-import { OrganizationSwitcher, UserButton } from '@clerk/nextjs';
+import { OrganizationSwitcher, useAuth, UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { ActiveLink } from '@/components/ActiveLink';
+import { CardIcon } from '@/components/icons/CardIcon';
+import { OrgIcon } from '@/components/icons/OrgIcon';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 import { ToggleMenuButton } from '@/components/ToggleMenuButton';
 import {
@@ -14,15 +16,24 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Logo } from '@/templates/Logo';
+import { ORG_ROLE } from '@/types/Auth';
 import { getI18nPath } from '@/utils/Helpers';
 
 const DashboardHeader = (props: {
-  menu: {
+  menu: Array<{
     href: string;
     label: string;
-  }[];
+  }>;
 }) => {
+  const t = useTranslations('DashboardHeader');
   const locale = useLocale();
+  const { has, isLoaded } = useAuth();
+
+  if (!isLoaded) {
+    return null;
+  }
+
+  const isAdmin = has({ role: ORG_ROLE.ADMIN });
 
   return (
     <>
@@ -46,10 +57,11 @@ const DashboardHeader = (props: {
         <OrganizationSwitcher
           organizationProfileMode="navigation"
           organizationProfileUrl={getI18nPath(
-            '/dashboard/organization-profile',
+            '/dashboard/organization',
             locale,
           )}
           afterCreateOrganizationUrl="/dashboard"
+          afterSelectOrganizationUrl={getI18nPath('/dashboard', locale)}
           hidePersonal
           skipInvitationScreen
           appearance={{
@@ -96,14 +108,28 @@ const DashboardHeader = (props: {
           <li>
             <UserButton
               userProfileMode="navigation"
-              userProfileUrl="/dashboard/user-profile"
-              afterSignOutUrl="/"
+              userProfileUrl="/dashboard/user"
               appearance={{
                 elements: {
                   rootBox: 'px-2 py-1.5',
                 },
               }}
-            />
+            >
+              {isAdmin && (
+                <UserButton.MenuItems>
+                  <UserButton.Link
+                    href="/dashboard/organization"
+                    label={t('organization')}
+                    labelIcon={<OrgIcon className="size-4" />}
+                  />
+                  <UserButton.Link
+                    href="/dashboard/subscription"
+                    label={t('subscriptions')}
+                    labelIcon={<CardIcon className="size-4" />}
+                  />
+                </UserButton.MenuItems>
+              )}
+            </UserButton>
           </li>
         </ul>
       </div>

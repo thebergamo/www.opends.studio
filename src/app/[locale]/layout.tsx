@@ -1,13 +1,22 @@
 import '@/styles/global.css';
 
 import type { Metadata } from 'next';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 
 import { ThemeProvider } from '@/components/ThemeProvider';
-import { AllLocales } from '@/utils/AppConfig';
+import { Toaster } from '@/components/ui/sonner';
+import { AllLocales, AppConfig } from '@/utils/AppConfig';
+import { getURL } from '@/utils/Helpers';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getURL()),
+  title: AppConfig.name,
+  description: AppConfig.description,
+  openGraph: {
+    title: AppConfig.name,
+    description: AppConfig.description,
+  },
   icons: [
     {
       rel: 'apple-touch-icon',
@@ -36,14 +45,14 @@ export function generateStaticParams() {
   return AllLocales.map((locale) => ({ locale }));
 }
 
-export default function RootLayout(props: {
+export default async function RootLayout(props: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
   unstable_setRequestLocale(props.params.locale);
 
   // Using internationalization in Client Components
-  const messages = useMessages();
+  const messages = await getMessages();
 
   return (
     <html lang={props.params.locale} className="scroll-smooth">
@@ -58,7 +67,10 @@ export default function RootLayout(props: {
             locale={props.params.locale}
             messages={messages}
           >
-            {props.children}
+            <>
+              {props.children}
+              <Toaster />
+            </>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
